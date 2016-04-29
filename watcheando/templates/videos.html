@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+	{% block Header %}
+	<h2 align="center"><b>{{vvideo.titulo}}</b></h2>
+	{% endblock %}
+	<!--/healer-->
+	<!--/panelVideo-->
+	{% block Contents %}
+	<div class="panel" id="panelContent">
+	<div class="container" align="center">
+			<br>
+			<br>
+			<table>
+				<tr>
+					<td><p>Etiquetas:</p></td>
+					{% for etiquetas in vvideo.etiquetas.all%}
+								
+					<td>
+					<p id="botonBorde"> <b>{{ etiquetas.nombre }}</b> </p>
+					</td>
+								
+					{% empty %}
+						Sin etiquetas registradas
+					{% endfor %}
+				</tr>
+			</table>
+					<video  poster="{{MEDIA_URL}}{{vvideo.careta}}" id="video1" controls>
+						<source src="{{MEDIA_URL}}{{vvideo.archivo}}" type="video/mp4">
+						<source src="{{MEDIA_URL}}{{vvideo.archivo}}" type="video/mp4">
+						Tu navegador no implementa el elemento <code>video</code>.
+					</video>
+
+					<br>
+					<br>
+
+					<p class="panel panel-default" id="comentario1">
+					<br>
+					<b>Publicado el {{vvideo.fecha}}</b>
+					<br>
+					<br>
+					{{vvideo.descripcion}}<br>
+					<br></p>
+					
+					
+					
+					<div class="panel panel-default" id="comentario1">
+					<br>
+					<div class="panel panel-default" id="panelComentario2">
+					<h2><b>Comentarios</b></h2>
+					</div>
+					<br>
+					<ul class="list-group list-unstyled">
+
+					{% for dato in comentar %}
+					<div class="panel panel-default" id="comenBorde">
+					<li><div class="panel-body"><p>{{dato.texto}}</p></div>
+					<div class="panel-footer"><p><b>{{dato.autor}}  ||  Publicado el {{dato.tiempo_registro}}</b></p>
+					{% if dato.autor.id == usuario.id %}
+						<a href="/eliminar_comentario/{{dato.id}}/" class="btn btn-watcheando">Borrar</a>
+					{% endif %}
+					</div>
+					</li>					
+					</div>
+					{% endfor %}
+
+					</ul>
+					<!--Añadir Comentario-->
+					<div class="panel panel-default">
+						<br>
+						<h2><b>Añade un comentario</b></h2>
+					<form action="{% url 'principal.views.poncomentario' vvideo.id %}" method="POST" placeholder="Comenta este video...">
+					<div class="panel panel-default" id="panelComentario1">
+					<br>
+					{% csrf_token %}
+					
+					{{ form.texto }}
+					<br><br><br>
+					</div>
+					<p><input class="btn btn-watcheando" id="botonBorde" type="submit" value="Publicar"></p>
+					</form>
+					</div>
+					</div>
+					
+				</div>
+
+			</div>
+	<!--<div class="container-fluid">
+				<ul class="list-group">
+					{% for comentar in comentar %}
+						<li class="list-group-item-heading">({{ comentar.tiempo_registro }}) {{ comentario.autor }}: </li>
+						<ul class="list-group-item">
+							{{ comentar.texto|linebreaks }}
+							{% if usuario.is_superuser %}
+							<form action="/eliminarComentario/{{comentario.id}}/"><input type="submit" value="Eliminar Comentario"></form>
+							{% endif %}
+						</ul>
+						<br>
+					{% endfor %}
+				</ul>
+			</div>-->
+
+		
+	{% endblock %}

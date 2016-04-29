@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+	<html lang="es">
+	<head>
+		<meta charset="UFT-8">
+		
+		<title>Watcheando - Tu pagina de Videos</title>
+		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+		<!-- Custom styles for this template -->
+		<link href="{{STATIC_URL}}bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="{{STATIC_URL}}bootstrap/css/estilos.css" rel="stylesheet">
+	</head>
+	<body>
+	<!--healer-->
+	{% block NavigationTop %}
+	{% load staticfiles %}
+	<div class="container">
+	<!--<div class="container" align="center">
+	<a href="/"><img src="{% static "titulo.png" %}" width="600" height="100"></a>
+	</div>-->
+	<!--Barra de navegacion-->
+		<!--Logo-->
+			<div class="navbar bg-primary navbar-fixed-top" id="navbar">
+				<div class="col-md-1">
+					<img src="/static/logoW.png" width="60" height="60">
+				</div>
+				<!--Formulario para BUSCAR-->
+				<div class="col-md-4">
+					
+					<div class="container">
+				
+					<form class="navbar-form navbar-left" action="/buscar/" method="POST" >{% csrf_token %}
+						<div class="btn-group" id="botonBorde">
+						<button type="submit" class="btn btn-default">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+						<input type="text" name="buscalo" class="form-control" placeholder="Video a buscar..." id="btn btn-default">
+						</div>
+					</form>	
+
+					</div>				
+					
+				</div>
+				<!--Menu Desplegable Usuario-->
+				<div class="col-md-1 col-md-offset-4">
+				<br>
+					<div class="container">	
+
+    					<button type="button" class="btn  btn-watcheando dropdown-toggle" data-toggle="dropdown" id="botonBorde">
+    	        {% if usuario.id != None %}
+    	  				   <b>Bienvenido, {{usuario.username}}.</b>
+     					 <span class="caret"></span>
+    					</button>
+    					<ul class="dropdown-menu">
+    	 					<li><a href="/"> Inicio  <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+      						<li><a href="/perfil/{{usuario.id}}"> Perfil  <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+      						<li><a href="/nuevoV/{{usuario.id}}/subir"> Subir <span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a></li>
+      						<li><a href="/cerrar"> Desconectar <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></li>
+      					</ul>
+
+      			{% else %}
+      					<b>Acceder</b>
+     	 				<span class="caret"></span>
+    					</button>
+    					<ul class="dropdown-menu">
+    		 				<li><a href="/">Inicio <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+      						<li><a href="/acceder">Conectar <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+      						<li><a href="/usuario/nuevo">Registrar <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+      					</ul>
+  	
+      			{% endif %}
+  				<br>
+				</div>
+
+
+			</div>
+		</div>
+					
+	</div>
+
+	{% endblock %}
+	<!---/healer-->
+	<div class="container">
+			<header>
+			<div class="panel panel-default" id="panelComentario2">
+			{% block Header %}
+			
+			{% endblock %}
+			</div>
+			</header>
+	
+		
+		{% block Contents %}
+		{% endblock %}
+
+		<footer>
+				{% block Footer %}
+				{% endblock %}
+		</footer>
+		</div>
+
+	<!-----------------final------------------>
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+		<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	</body>
+	</html>

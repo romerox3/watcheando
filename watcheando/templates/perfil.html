@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block Header %}
+	<div class="container" align="center">
+	<h1><b>Perfil de {{usuario.username}}</b></h1>
+	<br><br>
+	</div>
+{% endblock %}
+
+{% block Contents %}
+
+	<div class="container" id="containerContent">
+	<h2 align="center"><b>Mis videos</b></h2>
+	<br><br>
+	<ul class="list-unstyled">
+	{% for dato in videos %}
+	<li>
+	<div class="panel panel-default" id="panelComentario2">
+		<table align="center">
+		<tr>
+		<td>
+			<a href="/{{dato.id}}"><video poster="{{MEDIA_URL}}{{dato.careta}}" id="videoMostrar">
+			</video></a>
+		</td>
+		<td align="center">
+			<br>
+			<a class="btn btn-primary" id="botonBorde" href="/editar/{{dato.id}}">Editar</a>
+			<br>
+			<a class="btn btn-danger" id="botonBorde" href="/eliminar/{{dato.id}}">Eliminar</a>
+		</td>
+		</tr>
+		</table>
+		<h4 align="center"><b>{{dato.titulo}}</b></h4>
+		</div>
+	</li>
+	{% empty %}
+	<h3 align="center">No has subido ningun video aun.</h3>
+	{% endfor %}
+	</ul>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock %}

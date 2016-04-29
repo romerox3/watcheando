@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block Contents %}
+
+		<div class="container" id="containerContent">
+			<br>
+				<form id="formulario" method="post" enctype="multipart/form-data" action="">{% csrf_token %}
+					<div class="fluid-container">
+						{{formulario.as_p}}
+						<input type="submit" value="Confirmar">
+					</div>
+				</form>
+				<br>
+				{% for item in etiquetas %}
+					{{item.nombre}} .
+				{% endfor %}
+				<br>
+				<br>
+					<a class="btn btn-lg btn-default" href="/nuevoV/{{usuario.id}}/subir/" role="button">Volver al juego</a>				
+				<br>
+			<br>
+		</div>
+	<br>
+
+{% endblock %}

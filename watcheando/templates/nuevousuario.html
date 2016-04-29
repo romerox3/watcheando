@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block Header %} 
+	<h1 id="titulo"><b>Registra un nuevo usuario</b></h1>
+{% endblock %}
+
+{% block Contents %}
+
+		<div class="container" id="containerContent">
+			<br>
+			<form id='formulario' method='post' action=''>{% csrf_token %}
+				<table>{{formulario}}</table>
+				<p><input class="btn btn-watcheando" id="botonBorde" type='submit' value='Registrar'/></p>
+			</form>
+			<br>
+		</div>
+	
+{% endblock %}
+

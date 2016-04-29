@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block Header %}
+	<h1 id="titulo"><b>Resultados De La Busqueda</b></h1>
+{% endblock %}
+
+{% block Contents %}
+
+
+<div class="container" id="containerContent">
+
+				<table>
+					
+
+					{% for dato in datos %} <!--Por cada pareja-->
+					{% for video,etiquetas in dato.items %}
+						{% for p in palabrasClave %}
+							{% for e in etiquetas %}
+								{% if p.nombre == e.nombre %}
+							
+							
+								
+										<tr id="panelComentario2">
+										<td>	<a href="/{{video.id}}"><video poster="{{MEDIA_URL}}{{video.careta}}" height="200" width="200" id="videoMostrar" id="botonBorde">
+										</video></a></td>
+										<td><h1 aling="center">{{video.titulo}}</h1></td>
+								
+										<br>
+										</tr>
+										<br>
+
+							
+							
+						{% endif %}
+						{% endfor %}
+					{% endfor %}
+				{% endfor %}
+			{% endfor %}
+			
+			</table>
+
+<br><br>
+</div>
+	{% endblock%}

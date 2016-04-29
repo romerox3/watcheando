@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block Header %}
+
+<h1 id="titulo"><b>Nuevo video</b></h1>
+
+{% endblock %}
+
+{% block Contents %}
+
+
+
+		<div class="container" id="containerContent">
+
+		<br>
+		<div>
+			<a class="btn btn-lg btn-primary" id="botonBorde" href="/nuevoV/{{usuario.id}}/subir/nuevaPalabra" role="button"> Añadir Palabra Clave</a>
+		</div>
+		<br>
+		<br>
+		<form method="post" enctype="multipart/form-data" action="">
+		{% csrf_token %}
+		{{formulario.as_p}}
+		<div class="container">
+			<input class="btn btn-lg btn-watcheando" id="botonBorde"  type="submit" value="Confirmar">
+		</div>
+		</form>
+		<br>
+	</div>
+
+
+{% endblock %}

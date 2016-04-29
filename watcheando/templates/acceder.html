@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block Header %} 
+	<h2 align="center"><b>ACCEDE A TU CUENTA</b></h2>
+{% endblock %}
+
+{% block Contents %}
+		<div class="container" id="containerContent">
+	
+			<form id='formulario' method='post' action=''>
+				{% csrf_token %}
+				<br>
+				<div class="jumbotron" id="botonBorde">
+				<h3 align="center">Registrate <a href="/usuario/nuevo">Aqui</a></h3>
+				</div>
+				<br>
+				<table align="center">{{formulario}}</table>
+				<br>
+				<p align="center"><button class="btn btn-watcheando" type='submit' id="botonBorde"><b>Entrar</b></p>
+			</form>
+		</div>
+		
+{% endblock %}
